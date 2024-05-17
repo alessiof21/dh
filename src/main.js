@@ -1,5 +1,15 @@
 import { createApp } from 'vue'
-import './style.css'
+import components from './components/components.js';
+import store from './store.js';
 import App from './App.vue'
 
-createApp(App).mount('#app')
+const app = createApp(App);
+
+// Регистрируем все компоненты (пока их мало, но в будущем при развитии приложения их может стать много)
+for (const name in components) {
+    app.component(name, components[name]);
+}
+
+app
+    .use(store)
+    .mount('#app')
