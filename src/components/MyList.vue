@@ -1,11 +1,10 @@
 <script setup>
-import { ref } from 'vue'
 
+// Определяем получаемые пропсы (список персонажей на странице)
 defineProps({
   list: Array
 })
 
-const count = ref(0)
 </script>
 
 <template>
@@ -50,7 +49,7 @@ const count = ref(0)
     max-width: 1920px
     min-width: 768px
 .flex-persons
-  width: 580px
+  width: 540px
   height: 220px
   display: flex
   overflow: hidden

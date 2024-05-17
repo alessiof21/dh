@@ -11,5 +11,5 @@ for (const name in components) {
 }
 
 app
-    .use(store)
+    .use(store) // Используем vuex для кэширования запросов
     .mount('#app')

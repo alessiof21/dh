@@ -1,7 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
-import { getCharacters, getEpisode } from 'rickmortyapi'
+import { getCharacters, getEpisode } from 'rickmortyapi';
 
 // store из vuex
 const store = useStore();
@@ -22,7 +22,7 @@ const status = ref('');
 количество персонажей, показываемое на каждой странице
 */
 // Список персонажей, разбитый по страницам
-const paginatedList = computed(()=> paginate());
+const paginatedList = computed(()=> paginate())
 // Номер отображаемой страницы
 const page = ref(0);
 // Номер максимальной страницы
@@ -118,7 +118,7 @@ function showListCharacters(name = '', status = '') {
     })
 }
 
-// При запуске приложения запросить всех персонажей
+// При запуске приложения запросить всех персонажей, чтобы экран не был пустым
 onMounted(() => {
   showListCharacters();
 })
@@ -130,6 +130,13 @@ onMounted(() => {
     <input class="filter-name" id="name" type="text" placeholder="Имя" @input="(event) => name = event.target.value"/>
     <input class="filter-status" id="status" placeholder="Статус" type="text" @input="(event) => status = event.target.value"/>
     <button @click="showListCharacters(name, status)">Применить</button>
+    <span> Отображать на странице по 
+      <select @change="(event) => count = +event.target.value">
+        <option v-for="n in 20" :selected="n === count"> {{ n }}</option>
+      </select>
+      персонажей
+    </span>
+
   </div>
   <my-list :list="paginatedList[page]" />
   <div v-show="list.length !== 0" class="flex pagination">
